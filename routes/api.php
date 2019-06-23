@@ -11,8 +11,10 @@
 */
 Route::post('login', 'Api\UserController@login');
 Route::post('register', 'Api\UserController@register');
+Route::post('user/check-email/{email}', 'Api\UserController@checkEmail');
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('details', 'Api\UserController@details');
     Route::resource('tasks', 'Api\TaskController');
 });
+

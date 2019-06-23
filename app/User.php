@@ -24,4 +24,11 @@ class User extends Authenticatable
     protected $hidden = [
     'password', 'remember_token',
     ];
+
+    public static function checkUserForEmail($email)
+    {
+        $user = self::where('email', $email)
+                ->first();
+        return $user;
+    }
 }

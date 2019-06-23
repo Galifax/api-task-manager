@@ -60,5 +60,10 @@ class UserController extends Controller
     { 
         $user = Auth::user(); 
         return response()->json(['success' => $user], $this-> successStatus); 
-    } 
+    }
+
+    public function checkEmail($email)
+    {
+        return User::checkUserForEmail($email);
+    }
 }
