@@ -23,7 +23,7 @@ class Task extends Model
         return $this->hasOne($this, 'id', 'id_parent_id');
     }
 
-    static function getUserTasks($userId, $paginate = 20)
+    public function getUserTasks($userId, $paginate = 20)
     {
         return Task::where('user_id', $userId)
                 ->where('parent_id', 0)
@@ -32,7 +32,7 @@ class Task extends Model
                 ->paginate($paginate);;
     }
 
-    static function newTask($request, $userId)
+    public function newTask($request, $userId)
     {
         $input = $request->all();
         $input['user_id'] = $userId;
@@ -41,7 +41,7 @@ class Task extends Model
         return $task;
     }
 
-    static function showTask($id)
+    public function showTask($id)
     {
         $task = self::where('id', $id)
                  ->with('childTasks')
@@ -49,7 +49,7 @@ class Task extends Model
         return $task;
     }
 
-    static function updateTask($request, $userId)
+    public function updateTask($request, $userId)
     {
         $input = $request->all();
         $input['user_id'] = $userId;
@@ -59,7 +59,7 @@ class Task extends Model
         return $task;
     }
 
-    static function deleteTask($id)
+    public function deleteTask($id)
     {
         $task = self::find($id);
         $task->delete();

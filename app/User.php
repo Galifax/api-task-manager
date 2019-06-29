@@ -25,7 +25,7 @@ class User extends Authenticatable
     'password', 'remember_token',
     ];
 
-    public static function checkUserForEmail($email)
+    public function checkUserForEmail($email)
     {
         $user = self::where('email', $email)
                 ->first();

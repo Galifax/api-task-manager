@@ -10,6 +10,12 @@ use Validator;
 class UserController extends Controller 
 {
     public $successStatus = 200;
+
+    public function userModel()
+    {
+        return new User();
+    }
+
     /** 
      * login api 
      * 
@@ -64,6 +70,6 @@ class UserController extends Controller
 
     public function checkEmail($email)
     {
-        return User::checkUserForEmail($email);
+        return $this->userModel()->checkUserForEmail($email);
     }
 }

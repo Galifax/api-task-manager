@@ -9,6 +9,10 @@ use App\Task;
 
 class TaskController extends Controller
 {
+    public function taskModel()
+    {
+        return new Task();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        return Task::getUSerTasks($user->id, $request->paginate);
+        return $this->taskModel()->getUSerTasks($user->id, $request->paginate);
     }
     /**
      * Store a newly created resource in storage.
@@ -28,7 +32,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        return Task::newTask($request, $user->id);
+        return $this->taskModel()->newTask($request, $user->id);
     }
 
     /**
@@ -39,7 +43,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        return Task::showTask($id);
+        return $this->taskModel()->showTask($id);
     }
 
     /**
@@ -51,7 +55,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Task::updateTask($request, $id);
+        return $this->taskModel()->updateTask($request, $id);
     }
 
     /**
@@ -62,6 +66,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        return Task::deleteTask($id);
+        return $this->taskModel()->deleteTask($id);
     }
 }
